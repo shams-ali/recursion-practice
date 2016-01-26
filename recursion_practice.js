@@ -6,49 +6,27 @@ Ex: numToText("I have 5 dogs and 6 ponies"); // returns "I have five dogs and si
 
 */
 
+/* Pseudo code solution with inner recursive*/
 var numToText = function(str) {
+  //Create an object with keys as numeric numbers and values as corresponding strings
+  //Create a variable called result set equal to empty string
+
+  //Declare a recursive helper function that takes a string as a parameter
+    //Base case: if string.length = 0
+      //return result
+    //else check if first char of the string is a key in the numbers object
+      //concat the value of number prop to result
+    //else concat the origin char to result
+    //Return recursive call, parameters: sliced string and result
+
+  //call recursive helper function with str as the input
+  //return result
 
 };
-  //create an object with keys as numeric numbers and values as corresponding strings
-  var numConversions = {
-    1: 'one',
-    2: 'two',
-    3: 'three',
-    4: 'four',
-    5: 'five',
-    6: 'six',
-    7: 'seven',
-    8: 'eight',
-    9: 'nine',
-    0: 'zero'
-  };
-  //create variable called result, set equal to the second parameter to the fn or empty string
 
-  //basecase: if length of string is 0
-    //return result
-  //if letter is a property in numConversions
-    //add value of the property to result
-  //else letter to new string
-  //iterate to next letter of string by making a recursive call with the string with the first letter sliced off and passing in the result so far as the second parameter
-
-  var result = arguments[1] || '';
-  if(string.length === 0) {
-    return result;
-  } else {
-    var currentChar = string.charAt(0);
-    var newChar = '';
-    if(numConversions.hasOwnProperty(currentChar)) {
-      newChar = numConversions[currentChar];
-    } else {
-      newChar = currentChar;
-    }
-    return numToLetters(string.slice(1), result.concat(newChar));
-  }
-}
-
-function numToLetters (string) {
-  //create an object with keys as numeric numbers and values as corresponding strings
-  var numConversions = {
+ Solution with inner recursive function
+var numToText = function (str) {
+  var numbers = {
     1: 'one',
     2: 'two',
     3: 'three',
@@ -63,26 +41,52 @@ function numToLetters (string) {
 
   var result = '';
 
-  function createNewString (string) {
+  var createNewString = function(string) {
     if(string.length === 0) {
       return result;
     } else {
       var currentChar = string.charAt(0);
-      if(numConversions.hasOwnProperty(currentChar)) {
-        result = result.concat(numConversions[currentChar]);
+      if(numbers.hasOwnProperty(currentChar)) {
+        result = result.concat(numbers[currentChar]);
       } else {
         result = result.concat(currentChar);
       }
       return createNewString(string.slice(1));
     }
+  };
+
+  createNewString(str); /* what would happen if you returned this line instead of the next one */
+  return result;
+};
+
+
+var numToText = function(str) {
+  var numbers = {
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    0: 'zero'
+  };
+
+  var result = arguments[1] || '';
+  if(str.length === 0) {
+    return result;
+  } else {
+    var currentChar = str.charAt(0);
+    var newChar = '';
+    if(numbers.hasOwnProperty(currentChar)) {
+      newChar = numbers[currentChar];
+    } else {
+      newChar = currentChar;
+    }
+    return numToText(str.slice(1), result.concat(newChar));
   }
+};
 
-  return createNewString(string);
-
-  // return result;
-
-}
-
-
-
-debug(numToLetters('I have 5 dogs and 9 cats'));
+debug(numToText('I have 5 dogs and 2 cats'));
