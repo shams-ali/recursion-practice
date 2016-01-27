@@ -24,7 +24,7 @@ var numToText = function(str) {
 
 };
 
- Solution with inner recursive function
+ // Solution with inner recursive function
 var numToText = function (str) {
   var numbers = {
     1: 'one',
@@ -47,9 +47,9 @@ var numToText = function (str) {
     } else {
       var currentChar = string.charAt(0);
       if(numbers.hasOwnProperty(currentChar)) {
-        result = result.concat(numbers[currentChar]);
+        result.concat(numbers[currentChar]);
       } else {
-        result = result.concat(currentChar);
+        result.concat(currentChar);
       }
       return createNewString(string.slice(1));
     }
