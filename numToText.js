@@ -43,7 +43,7 @@ var numToText = function (str) {
 
   var createNewString = function(string) {
     if(string.length === 0) {
-      return result;
+      return;
     } else {
       var currentChar = string.charAt(0);
       if(numbers.hasOwnProperty(currentChar)) {
@@ -51,7 +51,7 @@ var numToText = function (str) {
       } else {
         result = result.concat(currentChar); // this is the same as result += currentChar
       }
-      return createNewString(string.slice(1));
+      createNewString(string.slice(1));
     }
   };
   createNewString(str);
